@@ -1,0 +1,7 @@
+{
+  "defaultCommandTimeout": 4000,
+  "pageLoadTimeout": 30000,
+  "baseUrl":"https://sharp.com",
+  "projectId":"jv8m7o"
+
+}

@@ -1,0 +1,38 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cypress": "^8.5.0",
+    "eslint-plugin-chai-friendly": "^0.7.2",
+    "eslint-plugin-json": "^3.1.0",
+    "typescript": "^4.4.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-import": "^2.24.2"
+  },
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cy": "$(npm bin)/cypress run --browser edge --headed",
+    "lint": "$(npm bin)/eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sshaiakhmedov/cypress.git"
+  },
+  "keywords": [
+    "cypress"
+  ],
+  "author": "Suleman Shaiakhmedov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sshaiakhmedov/cypress/issues"
+  },
+  "homepage": "https://github.com/sshaiakhmedov/cypress#readme"
+}

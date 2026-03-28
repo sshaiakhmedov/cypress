@@ -1,8 +1,6 @@
-import { HomePage } from '../../pages/Home.page';
+import { home } from '../support/fixtures';
 
 describe('Sharp.com Basic Test', () => {
-  const home = new HomePage();
-
   beforeEach(() => {
     home.goto();
   });

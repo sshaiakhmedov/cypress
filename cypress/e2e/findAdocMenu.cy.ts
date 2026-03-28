@@ -1,8 +1,6 @@
-import { HomePage } from '../../pages/Home.page';
+import { home } from '../support/fixtures';
 
 describe('Sharp.com Navigation', () => {
-  const home = new HomePage();
-
   beforeEach(() => {
     cy.viewport(1280, 720);
     home.goto();

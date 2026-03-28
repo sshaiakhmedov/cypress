@@ -1,5 +1,5 @@
 # Use the official Cypress image as the base
-FROM cypress/browsers:node-20.11.0-chrome-121.0.6167.184-1
+FROM cypress/browsers:node-22.12.0-chrome-131.0.6778.139-1-ff-133.0.3-edge-131.0.2903.94-1
 
 # Create the work directory
 WORKDIR /app
@@ -14,4 +14,4 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # Run the tests
-CMD ["npx", "cypress", "run"]
+CMD ["npm", "run", "cy:run"]

@@ -2,7 +2,14 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["es5", "dom"],
-    "types": ["cypress"]
+    "types": ["cypress", "node"],
+    "noEmit": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["cypress/*"]
+    }
   },
-  "include": ["**/*.ts"]
+  "include": ["cypress/**/*.ts", "cypress/**/*.js"],
+  "exclude": ["node_modules"]
 }

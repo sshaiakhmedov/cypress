@@ -24,7 +24,7 @@ When asked to write API tests for an endpoint, you MUST generate scenarios cover
 2. **Extract Payloads/Data:** Move large JSON bodies to files in the `data/` folder.
 3. **Environment Variables:** Use `Cypress.env()` and the `.env` file for base URLs and secrets.
 4. **Assertions:** Use `should` or `expect` (e.g., `response.status.should('eq', 200)`).
-5. **Organize tests by folder:** Place the spec file in a project-specific subdirectory within `cypress/e2e/` (or a dedicated `cypress/e2e/api/` folder).
+5. **Organize tests by folder:** Place the spec file in a project-specific subdirectory within `cypress/api/`.
 
 ## Execution Workflow
 

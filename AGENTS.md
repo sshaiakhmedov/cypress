@@ -15,7 +15,7 @@ These rules apply globally to ALL tasks (UI tests, API tests, fixing bugs, writi
 - **DRY UI Components:** Use components from `components/` when the same UI appears on 2+ pages.
 - **Environment config:** Use `cypress.config.ts` and the `.env` file for storing Base URLs, tokens, and API keys.
 - **TypeScript First:** All new files, helpers, and tests MUST be written in TypeScript (`.ts`).
-- **Project-Based Folders:** Organize all test specs into subdirectories within `cypress/e2e/` (e.g., `cypress/e2e/sharp/`).
+- **Project-Based Folders:** Organize UI test specs in `cypress/ui/` and API test specs in `cypress/api/`.
 
 ### Page Objects (TypeScript)
 

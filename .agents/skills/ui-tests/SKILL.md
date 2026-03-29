@@ -21,7 +21,7 @@ When asked to write UI tests for a feature, you MUST generate scenarios covering
 3. Use `beforeEach` hooks for setup (e.g., `cy.visit`).
 4. Use the browser tool to explore the DOM before writing any locators.
 5. Use Page Objects from `pages/` folder and Components from `components/` folder.
-6. **Organize specs by folder:** Place the `.cy.ts` file in a project-specific subdirectory within `cypress/e2e/`.
+6. **Organize specs by folder:** Place the `.cy.ts` file in a project-specific subdirectory within `cypress/ui/`.
 
 ## Execution Workflow
 

@@ -25,6 +25,8 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cy:run": "cypress run --quiet",
+    "cy:api": "cypress run --spec 'cypress/api/**/*' --quiet",
+    "cy:ui": "cypress run --spec 'cypress/ui/**/*' --quiet",
     "lint": "eslint . --fix"
   },
   "repository": {

@@ -7,7 +7,7 @@ export default defineConfig({
   allowCypressEnv: false,
   e2e: {
     baseUrl: 'https://sharp.com',
-    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    specPattern: 'cypress/{api,ui}/**/*.cy.{js,jsx,ts,tsx}',
     supportFile: 'cypress/support/e2e.ts',
     viewportWidth: 1280,
     viewportHeight: 720,

@@ -11,6 +11,10 @@ export class HomePage {
     return cy.get('section#homepage-hero a[href="/doctors"]').first();
   }
 
+  get sameDayCareLink() {
+    return cy.get('header#shc-main-header').contains('Same-day care');
+  }
+
   goto() {
     cy.visit('/');
   }

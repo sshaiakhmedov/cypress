@@ -30,6 +30,10 @@ When asked to write UI tests for a feature, you MUST generate scenarios covering
 
 *(Note: For generic anti-patterns like "No locators/constants in specs", refer to the global `AGENTS.md` rules.)*
 
+*** NEVER DO: ***
+1. **NEVER use `cy.viewport()`** in test files unless specifically testing mobile/responsive views. Always rely on the global default defined in `cypress.config.ts`.
+2. **NEVER hardcode selectors** (like `#id`, `.class`, `[data-test]`) directly inside `.cy.ts` spec files. Locators must strictly live inside Page Objects (`pages/`) or Components (`components/`).
+
 ## Execution Workflow
 
 For the exact step-by-step procedure to execute when creating a new UI test, see:

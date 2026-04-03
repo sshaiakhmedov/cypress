@@ -38,3 +38,5 @@ When writing a new UI Spec or test, follow these exact steps:
 - [ ] Prioritizing `cy.contains()` or specific data attributes over raw CSS classes.
 - [ ] No `it.only` or `describe.only` blocks are left in the spec.
 - [ ] No `cy.wait(<number>)` statements are used.
+- [ ] No `cy.viewport()` statements in the spec unless explicitly writing a mobile layout test.
+- [ ] NO raw locators (e.g. `cy.get('.classname')`) in the `.cy.ts` test block. ALL locators MUST be encapsulated within Page Objects or Components.

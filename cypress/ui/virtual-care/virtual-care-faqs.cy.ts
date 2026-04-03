@@ -8,9 +8,6 @@ describe('Virtual Care Flow', () => {
   const virtualCare = new VirtualCarePage();
 
   it('navigates from home to virtual care page and toggles all FAQ chevrons', () => {
-    // 1. Set viewport as per recorded JSON
-    cy.viewport(1981, 537);
-
     // 2. Navigate to Home
     home.goto();
 

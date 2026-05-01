@@ -10,6 +10,6 @@
       "@/*": ["cypress/*"]
     }
   },
-  "include": ["cypress/**/*.ts", "cypress/**/*.js"],
+  "include": ["cypress/**/*.ts", "cypress/**/*.js", "tests/**/*.ts", "pages/**/*.ts", "constants/**/*.ts"],
   "exclude": ["node_modules"]
 }

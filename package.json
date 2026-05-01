@@ -22,7 +22,7 @@
   },
   "scripts": {
     "cy:open": "cypress open",
-    "cy:run": "cypress run --quiet",
+    "cy:run": "cypress run --browser chrome --quiet",
     "cy:spec": "node scripts/run-spec.mjs",
     "cy:api": "cypress run --spec 'tests/api/**/*' --quiet",
     "cy:ui": "cypress run --spec 'tests/ui/**/*' --browser chrome --quiet",

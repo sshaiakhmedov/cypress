@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config({ quiet: true });
 
 export default defineConfig({
-  allowCypressEnv: false,
+  allowCypressEnv: true,
   e2e: {
     // baseUrl: 'https://www.mvideo.ru/', o avoid conclifct of 2 baseUrls
     specPattern: 'tests/{api,ui}/**/*.cy.{js,jsx,ts,tsx}',
@@ -28,6 +28,12 @@ export default defineConfig({
 
         return launchOptions;
       });
+
+      // Explicitly copy process.env to config.env
+      config.env = {
+        ...config.env,
+        CLAUDE_API_KEY: process.env.CLAUDE_API_KEY,
+      };
 
       return config;
     },

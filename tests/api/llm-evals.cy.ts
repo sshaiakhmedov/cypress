@@ -3,11 +3,14 @@
  * This uses cy.request() to hit the Anthropic API using your CLAUDE_API_KEY.
  */
 const askLlm = (prompt: string) => {
-  const apiKey = (Cypress.env() as any)['CLAUDE_API_KEY'];
+  let apiKey = (Cypress.env() as any)['CLAUDE_API_KEY'];
 
   if (!apiKey) {
     throw new Error('CLAUDE_API_KEY is missing! Please add it to your .env file.');
   }
+
+  // Defensive fix: remove any hidden newlines or spaces that cause ERR_INVALID_CHAR
+  apiKey = apiKey.trim();
 
   return cy.request({
     method: 'POST',

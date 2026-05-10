@@ -1,4 +1,4 @@
-import { MVIDEO_BASE_URL, MVIDEO_DISMISS_BUTTON_LABELS } from '../constants/mvideo';
+import { MVIDEO_BASE_URL } from '../constants/mvideo';
 
 export class MvideoLandingPage {
   get searchInput() {
@@ -37,10 +37,17 @@ export class MvideoLandingPage {
     return 'button, [role="button"], a';
   }
 
+  get locationPopup() {
+    // Using .first() in case there are multiple, and a longer timeout since popups can be slow to appear
+    const popup = () => cy.get('.location-interactive', { timeout: 10000 }).first();
+    popup.confirmButton = () => popup().contains('button', 'Все верно');
+    popup.denyButton = () => popup().find('.location-deny');
+    return popup;
+  }
+
   goto() {
     cy.visit(MVIDEO_BASE_URL);
     this.waitForLandingShell();
-    this.closePopups();
   }
 
   waitForLandingShell() {
@@ -48,52 +55,18 @@ export class MvideoLandingPage {
     this.searchInput.should('exist');
   }
 
-  /**
-   * M.Video can show stacked UI overlays. Closing one can reveal another.
-   */
-  closePopups(passes = 4) {
-    for (let i = 0; i < passes; i += 1) {
-      this.tryClickCloseByAria();
-      MVIDEO_DISMISS_BUTTON_LABELS.forEach((label) => {
-        this.tryClickVisibleControlExact(label);
-      });
-      // Handle the "City Confirmation" popup specifically
-      this.tryClickVisibleControlExact('Да, верно');
-    }
-  }
-
-  private tryClickCloseByAria() {
-    cy.get('body').then(($body) => {
-      const $close = $body.find(this.closeAriaSelector).filter(':visible');
-      if ($close.length) {
-        cy.wrap($close.first()).click({ force: true });
-      }
-    });
-  }
-
-  private tryClickVisibleControlExact(label: string) {
-    cy.get('body').then(($body) => {
-      const $hits = $body.find(this.clickableControlsSelector).filter((_, el) => {
-        const $el = Cypress.$(el);
-        const text = $el.text().replace(/\s+/g, ' ').trim();
-        return text === label && $el.is(':visible');
-      });
-      if ($hits.length) {
-        cy.wrap($hits.first()).click({ force: true });
-      }
-    });
+  closeLocationPopup() {
+    this.locationPopup.confirmButton().click();
   }
 
   searchFor(query: string) {
-    this.closePopups(2);
     this.searchInput.should('be.visible').should('not.be.disabled');
     this.searchInput.clear({ force: true });
     this.searchInput.type(query, { delay: 15 });
-    
+
     // Click the search button within the actions container
     this.searchSubmitButton.click({ force: true });
   }
-
 
   assertSearchResultsUrlContainsQuery(query: string) {
     cy.url({ timeout: 20000 }).should('include', '/search');
@@ -113,7 +86,7 @@ export class MvideoLandingPage {
         const normalizedQuery = query.toLowerCase().replace(/-/g, ' ');
         // Check if at least one word from the query is in the heading
         const words = normalizedQuery.split(' ');
-        const matches = words.some(word => normalizedText.includes(word));
+        const matches = words.some((word) => normalizedText.includes(word));
         expect(matches, `Heading "${text}" should relate to "${query}"`).to.be.true;
       });
 
@@ -126,19 +99,18 @@ export class MvideoLandingPage {
 
   assertProductTitlesContain(query: string) {
     const normalizedQuery = query.toLowerCase().replace(/-/g, ' ');
-    const queryWords = normalizedQuery.split(' ').filter(w => w.length > 2);
+    const queryWords = normalizedQuery.split(' ').filter((w) => w.length > 2);
 
     // Check first few products to ensure they are relevant
-    this.productNames
-      .should('have.length.at.least', 1)
-      .then(($els) => {
-        const titles = $els.toArray().slice(0, 3).map(el => (el as HTMLElement).innerText.toLowerCase().replace(/-/g, ' '));
-        // At least one of the top 3 items should contain at least one significant word from the query
-        const anyMatch = titles.some(title => 
-          queryWords.some(word => title.includes(word))
-        );
-        expect(anyMatch, `At least one of the top products should match "${query}"`).to.be.true;
-      });
+    this.productNames.should('have.length.at.least', 1).then(($els) => {
+      const titles = $els
+        .toArray()
+        .slice(0, 3)
+        .map((el) => (el as HTMLElement).innerText.toLowerCase().replace(/-/g, ' '));
+      // At least one of the top 3 items should contain at least one significant word from the query
+      const anyMatch = titles.some((title) => queryWords.some((word) => title.includes(word)));
+      expect(anyMatch, `At least one of the top products should match "${query}"`).to.be.true;
+    });
   }
 
   clickSearchInput() {

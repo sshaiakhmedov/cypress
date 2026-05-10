@@ -16,6 +16,6 @@ export class HomePage {
   }
 
   goto() {
-    cy.visit('/');
+    cy.visit('https://sharp.com');
   }
 }

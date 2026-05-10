@@ -2,3 +2,4 @@ node_modules
 cypress.env.json
 .env
 .claude
+llm_error.json
